@@ -44,7 +44,12 @@ builder.Services.AddSwaggerGen();
 // Serilog.Sinks.Console
 // Serilog.Sinks.File
 
-Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger();
+Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).CreateLogger(); // read from appsettings.json
+/*/Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger(); // configure in place
+*/
 builder.Host.UseSerilog();
 
 
@@ -93,6 +98,11 @@ app.MapGet("/", (ILogger<Program> logger) =>
     return "Hello World!";
 });
 
+app.MapPost("/echo", (string message, ILogger<Program> logger) => 
+{
+    logger.LogInformation("Echoing message: {Message}", message);
+    return Results.Ok(message);
+});
 
 
 
