@@ -1,4 +1,6 @@
-using Serilog;
+using Serilog; // logging library
+using Microsoft.AspNetCore.Mvc; // for [Annontations]
+using Models.Car; // using the Car
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,25 +68,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", (ILogger<Program> logger) =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    logger.LogInformation("Weather forecast generated with {Count} entries", forecast.Length);
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+// endpoint methods
 
 app.MapGet("/", (ILogger<Program> logger) => 
 {
@@ -96,21 +80,61 @@ app.MapGet("/", (ILogger<Program> logger) =>
     logger.LogCritical("This is a critical log");
 
     return "Hello World!";
-});
+}).WithName("GetRoot");
 
-app.MapPost("/echo", (string message, ILogger<Program> logger) => 
+// /echo?message=hello%20world
+// classes will always default to being read from the body of a message
+app.MapPost("/echo", ( [FromBody] string message, ILogger<Program> logger) => 
 {
     logger.LogInformation("Echoing message: {Message}", message);
     return Results.Ok(message);
-});
+}).WithName("PostEcho");
 
 
+// Car Functionality
+
+// Car[] cars = new Car[]; // array - fixed size 
+List<Car> carList = new List<Car>(); // list - dynamic size and method management 
+
+app.MapPost("/car", (ILogger<Program> logger, [FromBody] Car car) =>
+{
+    logger.LogInformation($"Run the post car method {car}");
+    carList.Add(car);
+}).WithName("Create Car");
+
+app.MapGet("/car", (ILogger<Program> logger) =>
+{
+    logger.LogInformation("Run the get all cars method");
+    return Results.Ok(carList);
+}).WithName("Get All Cars");
+
+app.MapGet("/car/{id}", (ILogger<Program> logger, [FromRoute] int id) =>
+{
+    logger.LogInformation($"Run the get car by id method: {id}");
+    /* For loop implementation
+    for (int i = 0; i < carList.Count; i++)
+    {
+        if (carList[i].Id == id)
+        {
+            return Results.Ok(carList[i]);
+        }
+    }
+    */
+
+    // LINQ - Language Integrated Query
+    
+    /* all iterables/enumerables
+    Elements    a   b   c   d
+    indexes     0   1   2   3
+    */
+
+    // return Results.Ok(carList.ElementAt(id)); // get by index - not what we want
+    
+    // Anonymous function/labmda expression syntax
+    // ( returning => (expressions))
+    return Results.Ok(carList.Where(car => car.Id == id).ToList()); // returns a list of cars that match the id
 
 
+}).WithName("Get Car By Id");
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
