@@ -39,6 +39,6 @@ public class ApiTest : IClassFixture<WebApplicationFactory<Program>>
         var response = await _client.GetAsync("/");
 
         // Assert - compare and validate
-        response.StatusCode.Should().Not().Be(HttpStatusCode.NotFound);
+        response.StatusCode.Should().NotBe(HttpStatusCode.NotFound);
     }
 }
