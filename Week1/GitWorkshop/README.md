@@ -13,11 +13,9 @@ This is an exercise that works best with a small group of people working from a 
 ## Preparatory steps: 
 1. Nominate a repo owner.  The repo owner should share their screen as they go through the next couple steps so all collaborators can see what's going on.
 
-2. Repo owner creates a repo on github.
+2. Repo owner creates a repo on github (on the cohort org).
 
-3. Repo owner adds all members of the group as collaborators on the repo. (Settings -> Collaborators and Teams)
-
-4. The repo owner should initialize the exercise by cloning the repo, and creating two files (`haiku.md` and `one-line-test.md`) on a local branch. **(Repo owner should share their screen as they're doing this).**
+3. The repo owner should initialize the exercise by cloning the repo, and creating two files (`haiku.md` and `one-line-test.md`) on a local branch. **(Repo owner should share their screen as they're doing this).**
 
 - `haiku.md` should have a one line introduction (`"Hello World!"` or similar) on line one, and a goodbye line (`"Goodbye world!"`) however, **the important part is to leave three blank lines for each member of the group**. In a three person group, line 1 will say `"Hello world!"`, lines 2-10 will be blank, and line 11 will have a goodbye message.
 
