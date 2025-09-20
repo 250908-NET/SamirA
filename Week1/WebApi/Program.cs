@@ -38,6 +38,7 @@ if (app.Environment.IsDevelopment())
 app.MapCalculatorEndpoints1();  
 app.MapCalculatorEndpoints2();
 app.MapCalculatorEndpoints3();
+app.DateTimeFun();
 
      //this and line 38 do the same thing
 
