@@ -20,14 +20,15 @@ select * from Customer where Country = 'Brazil';
 select * from employee where title = 'Sales Support Agent';
 
 -- Retrieve a list of all countries in billing addresses on invoices
-select country  from customer;
+select BillingCountry from Invoice;
 
 -- Retrieve how many invoices there were in 2009, and what was the sales total for that year?
-
-
     -- (challenge: find the invoice count sales total for every year using one query)
+select count(*), sum(total) from invoice where year(InvoiceDate) = '2009';
 
 -- how many line items were there for invoice #37
+select count(*) from Invoice inner join InvoiceLine on Invoice.InvoiceId = InvoiceLine.InvoiceId where Invoice.InvoiceId = 37;
+
 
 -- how many invoices per country? BillingCountry  # of invoices -
 
@@ -47,7 +48,7 @@ select country  from customer;
 
 -- How many customers are assigned to each sales agent?
 
--- Which track was purchased the most ing 20010?
+-- Which track was purchased the most ing 2010?
 
 -- Show the top three best selling artists.
 
