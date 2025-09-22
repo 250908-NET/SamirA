@@ -4,7 +4,7 @@ using _5_OperatorsChallenge;
 
 namespace _5_OperatorsChallenge.Tests
 {
-    public class ProgramTest
+    public class ProgramTest 
     {
         public static readonly IEnumerable<object[]> _singleNumbers = new List<object[]>
         {

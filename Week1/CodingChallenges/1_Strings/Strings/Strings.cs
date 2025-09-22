@@ -12,8 +12,23 @@ namespace StringManipulationChallenge
             *
             */
             //when you call a method, you call it with arguments. The args values are held in a variable.
+            Console.WriteLine("test");
+
+            //some useful string methods: 
+            
+            // var str1 = "     Hi there how are you?      ";
+            // var str2 = str1.Trim();
+            // Console.WriteLine(str1[0..]);
+            // Console.WriteLine(str2[4..9]);
+            // Console.WriteLine(str1.Trim());
+            // Console.WriteLine(str1.Trim().IndexOf('o'));
+            // Console.WriteLine(str2.IndexOf('r'));
 
 
+            // var str3 = "abcdef";
+            // //other ways to print substrings: 
+            // Console.WriteLine(str3.Substring(2));// prints index 2 and up
+            // Console.WriteLine(str3.Substring(2,3));// prints index 2, 3, and 4 (the second param 3 is num letters)
         }
 
         /// <summary>
@@ -69,7 +84,7 @@ namespace StringManipulationChallenge
         public static string StringSubstring(string x, int firstElement, int lengthOfSubsring)
         {
             //throw new NotImplementedException("StringSubstring method not implemented.");
-            return x[firstElement..lengthOfSubsring];
+            return x.Trim().Substring(firstElement, lengthOfSubsring);
         }
 
         /// <summary>
@@ -100,7 +115,8 @@ namespace StringManipulationChallenge
         /// <returns></returns>
         public static string ConcatNames(string fName, string lName)
         {
-            throw new NotImplementedException("ConcatNames method not implemented.");
+            //throw new NotImplementedException("ConcatNames method not implemented.");
+            return $"{fName} {lName}";
         }
     }//end of program
 }
