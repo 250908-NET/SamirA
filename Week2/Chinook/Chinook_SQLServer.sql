@@ -1,3 +1,4 @@
+-- Active: 1758555582352@@127.0.0.1@1433@master
 
 /*******************************************************************************
    Chinook Database - Version 1.4
@@ -7,10 +8,15 @@
    Author: Luis Rocha
    License: http://www.codeplex.com/ChinookDatabase/license
 ********************************************************************************/
-CREATE DATABASE Chinook2;
+
+DROP DATABASE [IF EXISTS] [Chinook];
+GO
+
+CREATE DATABASE [Chinook];
 GO
 
 USE Chinook;
+GO
 
 /*******************************************************************************
    Create Tables
