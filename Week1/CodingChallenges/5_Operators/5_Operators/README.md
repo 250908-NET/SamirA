@@ -16,4 +16,4 @@ Implement the following methods using the required operators:
 # Operator Types
 unary operators like increment(++) and decrement(--)
 binary operators like + , - , * , / , % , ! , != , bool (like < , > , ==)
-conditionals (like && , ||)
+conditionals (like && , ||) 

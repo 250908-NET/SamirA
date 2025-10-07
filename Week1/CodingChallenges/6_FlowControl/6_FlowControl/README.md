@@ -1,5 +1,5 @@
 # Challenge Instructions
-1. Create GetValidTemperature()
+1. Create GetValidTemperature() 
     - Get a Farhrenheit temperature value between -40 and 135, inclusive, as input from the user.
     - Use int.tryParse() to parse the input.
     - Reprompt until the user inputs the correct type and the value is in range.

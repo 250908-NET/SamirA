@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS Button Example</title>
+  </head>
+  <body>
+    <h1>Click the Button!</h1>
+    <button onclick="tellJoke()">Joke of the day</button>
+    <button onclick="sayHello()">Say Hello</button>
+    <h2>Enter your name: </h2>
+    <input type="text" id="nameInput" placeholder="Your name here">
+    <button onclick="greetUser()">Greet Me</button>
+
+
+    <script>
+      console.log("This code runs from inside the web page!");
+      let message = "Welcome to JavaScript!";
+      console.log(message);
+
+      function sayHello(){
+        alert("Hello from JavaScript!");
+      }
+
+      function tellJoke(){
+        alert("Why did the scarecrow win an award? Because he was outstanding in his field!");
+      }
+
+      function greetUser(){
+        let name = document.getElementById("nameInput").value;
+        if(name === ""){
+          alert("Pleae enter a name");
+        }
+        alert("Hello, " + name + "!");
+      }
+    </script>
+  </body>
+</html>

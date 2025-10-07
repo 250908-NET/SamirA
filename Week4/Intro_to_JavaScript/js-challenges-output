@@ -1,0 +1,59 @@
+js-challenges-outpu› console. log("Hello, JavaScript");
+Hello, Javascript
+VM228:1
+‹ undefined
+> 5+3
+<8
+// > 10*2
+// 20 .>
+// > 100/4 + 7
+// < 32
+// › let name = "Jordan";
+// ‹ undefined
+// › let age = 25;
+// ‹ undefined
+// › console. log ("'Name", name);
+// Name Jordan
+// VM445:1
+// ‹ undefined
+// > console. log ("Age", age);
+// Age 25
+// ‹ undefined
+// VM526: 1
+// › name = "Alex";
+// ‹ 'Alex'
+// › age = age + 5;
+// ‹ 30
+// › console. log ("Updated age:"
+// , age) ;
+// Updated age: 30
+// VM705:1
+
+
+// let arr = ["blue", "comedy", 7];
+// console.log(`My favorite color is: ${arr[0]}, my favorite movie genre is ${arr[1]}, and my favorite number is ${arr[2]}.`);
+// My favorite color is: blue, my favorite movie genre is comedy, and my favorite number is 7.
+
+/**
+ * let arr = ["blue", "comedy", 7];
+console. log('My favorite color is:
+${arr[Ol}, my favorite movie genre is Starrlily, and my favorite number is ${arr [21}. ');
+My favorite color is: blue, VM1676:1 my favorite movie genre is comedy, and my favorite number is 7.
+undefined
+function add (a, b){
+return a+b;
+}
+undefined
+console. log (add (3,7));
+10
+VM2011:1
+undefined
+
+function square(num){
+    return num*num;
+}
+undefined
+console.log(square(7));
+VM2324:1 49
+undefined
+ */

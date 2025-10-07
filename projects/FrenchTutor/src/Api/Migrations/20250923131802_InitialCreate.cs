@@ -1,0 +1,120 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace Api.Migrations
+{
+    /// <inheritdoc />
+    public partial class InitialCreate : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Artists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Artists", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Expressions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Phrase = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Meaning = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Expressions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Songs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: true),
+                    LyricsFr = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TranslationEn = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArtistId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Songs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Songs_Artists_ArtistId",
+                        column: x => x.ArtistId,
+                        principalTable: "Artists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SongExpressions",
+                columns: table => new
+                {
+                    ExpressionsId = table.Column<int>(type: "int", nullable: false),
+                    SongsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SongExpressions", x => new { x.ExpressionsId, x.SongsId });
+                    table.ForeignKey(
+                        name: "FK_SongExpressions_Expressions_ExpressionsId",
+                        column: x => x.ExpressionsId,
+                        principalTable: "Expressions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SongExpressions_Songs_SongsId",
+                        column: x => x.SongsId,
+                        principalTable: "Songs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Artists_Name",
+                table: "Artists",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SongExpressions_SongsId",
+                table: "SongExpressions",
+                column: "SongsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Songs_ArtistId",
+                table: "Songs",
+                column: "ArtistId");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "SongExpressions");
+
+            migrationBuilder.DropTable(
+                name: "Expressions");
+
+            migrationBuilder.DropTable(
+                name: "Songs");
+
+            migrationBuilder.DropTable(
+                name: "Artists");
+        }
+    }
+}
